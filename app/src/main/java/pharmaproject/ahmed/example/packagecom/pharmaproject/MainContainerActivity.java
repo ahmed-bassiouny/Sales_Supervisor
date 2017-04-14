@@ -1,6 +1,8 @@
 package pharmaproject.ahmed.example.packagecom.pharmaproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -123,17 +125,14 @@ public class MainContainerActivity extends AppCompatActivity {
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-
-
-                        finish();
+                        Information.CurrentUser = "";
+                        utils.login(MainContainerActivity.this,false);
                         Intent intent = new Intent(MainContainerActivity.this, Signin.class);
                         startActivity(intent);
-                        FirebaseAuth.getInstance().signOut();
-                        Information.CurrentUser = "";
+                        finish();
                     }
                 })
                 .show();
 
     }
-
 }

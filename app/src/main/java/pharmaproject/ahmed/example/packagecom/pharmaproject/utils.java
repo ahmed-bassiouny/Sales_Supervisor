@@ -2,11 +2,13 @@ package pharmaproject.ahmed.example.packagecom.pharmaproject;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,6 +41,8 @@ public class utils {
 
     public static Typeface myTypeFace;
     static ProgressDialog ProgressDialog;
+    private static String SHarePreferenceName="LOG";
+    static SharedPreferences sharedPref ;
     public static Typeface getFont(Context ctx) {
         if (myTypeFace == null) {
             myTypeFace = Typeface.createFromAsset(ctx.getAssets(), "CaviarDreams.ttf");
@@ -58,4 +62,22 @@ public class utils {
         ProgressDialog.cancel();
     }
 
+    public static String getAndroidID(Context context){
+        return Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+    }
+
+    public static boolean isloged(Context context){
+        if(sharedPref==null)
+            sharedPref =context.getSharedPreferences(SHarePreferenceName,Context.MODE_PRIVATE);
+
+        return sharedPref.getBoolean("loged",false);
+    }
+    public static void login(Context context,boolean login){
+        if(sharedPref==null)
+        sharedPref =context.getSharedPreferences(SHarePreferenceName,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("loged", login);
+        editor.commit();
+    }
 }

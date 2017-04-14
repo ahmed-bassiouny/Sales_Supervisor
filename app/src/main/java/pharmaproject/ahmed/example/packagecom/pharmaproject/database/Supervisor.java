@@ -33,9 +33,12 @@ import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
 
 public class Supervisor {
 
+    public String androidID;
+    public String email;
     public String name;
     public String phone;
     public String area;
+    public boolean access;
 
     public void insert(){
         getRoot().setValue(this);

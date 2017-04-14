@@ -106,11 +106,11 @@ public class Validation {
 
         return validate ;
     }
-    public static  boolean CheakDataSignin(String phone,String password,Context context)
+    public static  boolean CheakDataSignin(String phone,Context context)
     {
         boolean validate= false ;
-        if (phone.isEmpty() || password.isEmpty()) {
-            Debuger.Toast(context,"please fill in all empty fields");
+        if (phone.isEmpty()) {
+            Debuger.Toast(context,"please fill in email field");
         }
         else {
             validate=true;
