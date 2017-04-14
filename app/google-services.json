@@ -1,0 +1,231 @@
+{
+  "project_info": {
+    "project_number": "154768801144",
+    "firebase_url": "https://pharmaproject-edba5.firebaseio.com",
+    "project_id": "pharmaproject-edba5",
+    "storage_bucket": "pharmaproject-edba5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154768801144:android:385cb819333b4cf8",
+        "android_client_info": {
+          "package_name": "com.ui.pharmaproject.finalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154768801144-4pnn4mc3l7ri2f8u7m1uaoogdrkir0o3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ui.pharmaproject.finalproject",
+            "certificate_hash": "ccf33d1ae30785ba1226d432c1ac5ba71c27cd0c"
+          }
+        },
+        {
+          "client_id": "154768801144-hpv040nubs9ku02u4ulpn4ihlrd5cl1b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdW6N_frnxDc1zox-Eu6mcgo2IfaYxY9Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154768801144-hpv040nubs9ku02u4ulpn4ihlrd5cl1b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154768801144:android:e8fd6508ebffe63f",
+        "android_client_info": {
+          "package_name": "com.example.ahmed.pharmaproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154768801144-pmv32fg9cqdfdr1ad82k089m0h4j6opc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ahmed.pharmaproject",
+            "certificate_hash": "bde5828b19ab7243ce94444f3ae43645bd943eb4"
+          }
+        },
+        {
+          "client_id": "154768801144-hpv040nubs9ku02u4ulpn4ihlrd5cl1b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdW6N_frnxDc1zox-Eu6mcgo2IfaYxY9Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154768801144-hpv040nubs9ku02u4ulpn4ihlrd5cl1b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154768801144:android:08f0589f7b91ab7c",
+        "android_client_info": {
+          "package_name": "com.ui.pharmaproject.finalproject_employee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154768801144-k1im2ldeudm8gnndj7cfggogc6nov6cr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ui.pharmaproject.finalproject_employee",
+            "certificate_hash": "ccf33d1ae30785ba1226d432c1ac5ba71c27cd0c"
+          }
+        },
+        {
+          "client_id": "154768801144-hpv040nubs9ku02u4ulpn4ihlrd5cl1b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdW6N_frnxDc1zox-Eu6mcgo2IfaYxY9Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154768801144-hpv040nubs9ku02u4ulpn4ihlrd5cl1b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154768801144:android:feb9b286792494a7",
+        "android_client_info": {
+          "package_name": "com.example.shemoo.myrecycle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154768801144-8qlfpcfen5f54os61djmn9cib10o53up.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shemoo.myrecycle",
+            "certificate_hash": "14aadfb2f3e389c4070400c4a10016c515d674e0"
+          }
+        },
+        {
+          "client_id": "154768801144-hpv040nubs9ku02u4ulpn4ihlrd5cl1b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdW6N_frnxDc1zox-Eu6mcgo2IfaYxY9Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154768801144-hpv040nubs9ku02u4ulpn4ihlrd5cl1b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154768801144:android:abea6788c8cb93f1",
+        "android_client_info": {
+          "package_name": "pharmaproject.ahmed.example.packagecom.pharmaproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154768801144-50u3q49ffilhhs7rfkda5icqvl4dv28t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pharmaproject.ahmed.example.packagecom.pharmaproject",
+            "certificate_hash": "bde5828b19ab7243ce94444f3ae43645bd943eb4"
+          }
+        },
+        {
+          "client_id": "154768801144-hpv040nubs9ku02u4ulpn4ihlrd5cl1b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdW6N_frnxDc1zox-Eu6mcgo2IfaYxY9Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154768801144-hpv040nubs9ku02u4ulpn4ihlrd5cl1b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

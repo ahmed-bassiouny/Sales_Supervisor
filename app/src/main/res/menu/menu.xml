@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@mipmap/home"
+        >
+    </item>
+    <item
+        android:id="@+id/addempoyee"
+        android:title="Add Employee"
+        android:icon="@mipmap/ph_adddemployee"
+        >
+    </item>
+    <item
+        android:id="@+id/track"
+        android:title="Track Employees"
+        android:icon="@mipmap/trackemployee"
+        >
+    </item>
+    <item android:title="Supervisor">
+        <menu>
+            <item android:title="Profile"
+                android:id="@+id/profile"
+                android:icon="@mipmap/profile"
+                ></item>
+            <item android:title="Signout"
+                android:id="@+id/signout"
+                android:icon="@mipmap/signout"
+                ></item>
+        </menu>
+    </item>
+</menu>

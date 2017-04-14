@@ -1,0 +1,288 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    android:weightSum="5"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="@drawable/border"
+        android:layout_margin="10dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+
+                <com.github.siyamed.shapeimageview.CircularImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/Em_pro_profile_image"
+                    android:src="@drawable/logo"
+                    app:siBorderWidth="3dp"
+                    app:siBorderColor="#98b9b9"
+                    android:elevation="6dp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:textColor="#000"
+                        android:text="hossam"
+                        android:gravity="center_vertical"
+                        android:enabled="false"
+                        android:textSize="20sp"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/EM_pro_Name"
+                        android:textStyle="bold"/>
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ph_email" />
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:ems="15"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="email"
+                    android:layout_weight="2.75"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:id="@+id/Em_Pro_email" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="-5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ph_phone"
+                    />
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:textColor="#000"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="phone"
+                    android:layout_marginBottom="5dp"
+                    android:hint="phone"
+                    android:id="@+id/Em_Pro_phone"/>
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="-5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ph_password"
+                    />
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:textColor="#000"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="Password"
+                    android:id="@+id/password"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="-5dp"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ph_timetrack"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:textColor="#000"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:inputType="number"
+                    android:hint=" 1-10 min"
+                    android:id="@+id/time_track"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="-5dp"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/imei"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:textColor="#000"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint=" ID"
+                    android:id="@+id/imei"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/border"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content">
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView_employee"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:apiKey="AIzaSyCiAhY_2fey0r0mo1N6m8jcGrKkgWpPR6U" />
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_weight="1"
+        android:background="@drawable/border"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/editProfile"
+            android:src="@drawable/ph_edit"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/addtask"
+            android:src="@drawable/ph_addtask"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/showtasks"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ph_listoftask"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/callemployee"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ph_call"/>
+    </LinearLayout>
+</LinearLayout>
+
+
+    <!--
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/multiple_actions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            fab:fab_addButtonColorNormal="#04ae0c"
+            fab:fab_addButtonPlusIconColor="#fff">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addtask"
+                android:layout_width="wrap_content"
+                fab:fab_icon="@drawable/addtask"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="#04ae0c"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/showtasks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_icon="@drawable/tasks"
+                fab:fab_colorPressed="#04ae0c"/>
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/callemployee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_icon="@drawable/callemployee"
+                fab:fab_colorPressed="#04ae0c"/>
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+        -->

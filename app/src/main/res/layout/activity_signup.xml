@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pharmaproject.ahmed.example.packagecom.pharmaproject.Signup"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/Registerpage"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                android:textColor="#07BAA5"
+                android:id="@+id/Register"/>
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:ems="15"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/roundedittext"
+                android:drawableLeft="@drawable/ph_email"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:id="@+id/email"
+                android:inputType="textEmailAddress"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone"
+                android:ems="15"
+                android:background="@drawable/roundedittext"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/phone"
+                android:padding="10dp"
+                android:inputType="phone"
+                android:drawableLeft="@drawable/ph_phone"
+                android:drawablePadding="10dp"
+                />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:ems="15"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/roundedittext"
+                android:padding="10dp"
+                android:id="@+id/nameRe"
+                android:drawableLeft="@drawable/ph_person"
+                android:drawablePadding="10dp"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:ems="15"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/roundedittext"
+                android:padding="10dp"
+                android:id="@+id/passwordRe"
+                android:inputType="textPassword"
+                android:drawableLeft="@drawable/ph_password"
+                android:drawablePadding="10dp"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/confirmpassword"
+                android:ems="15"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/Re_password_Re"
+                android:background="@drawable/roundedittext"
+                android:padding="10dp"
+                android:inputType="textPassword"
+                android:drawableLeft="@drawable/ph_password"
+                android:drawablePadding="10dp"/>
+            <AutoCompleteTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/area"
+                android:ems="15"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/roundedittext"
+                android:padding="10dp"
+                android:id="@+id/Area"
+                android:drawableLeft="@drawable/ph_location"
+                android:drawablePadding="10dp"/>
+
+
+
+            <Button
+                android:text="@string/proceed"
+                android:id="@+id/proceed"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:layout_width="119dp"
+                android:layout_height="43dp"
+                android:background="@drawable/buttonshape"
+                android:shadowColor="#A8A8A8"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:elevation="5dp"
+                android:paddingLeft="12dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="50dp"
+                android:paddingTop="3dp"
+                android:paddingRight="12dp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,107 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.ahmed.pharmaproject.AddTask">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/nameEmployee"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:text="Employee Name"
+                android:textColor="#000"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+
+            <AutoCompleteTextView
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedittext"
+                android:drawableLeft="@drawable/ph_person"
+                android:drawablePadding="10dp"
+                android:hint="Doctor Name"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/autoCompleteTextView" />
+
+            <EditText
+                android:id="@+id/Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/roundedittext"
+                android:drawableLeft="@drawable/ph_location"
+                android:drawablePadding="10dp"
+                android:focusable="false"
+                android:hint="Location"
+                android:padding="10dp" />
+
+
+            <EditText
+                android:id="@+id/Task_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginLeft="-18dp"
+                android:background="@drawable/roundedittext"
+                android:drawableLeft="@drawable/ph_time"
+                android:drawablePadding="10dp"
+                android:focusable="false"
+                android:hint="23-03-2017 11:30 AM"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/Task_Desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginLeft="-20dp"
+                android:background="@drawable/roundedittext"
+                android:drawableLeft="@drawable/ph_description"
+                android:drawablePadding="10dp"
+                android:hint="Task Description"
+                android:inputType="textMultiLine"
+                android:padding="10dp" />
+
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="119dp"
+                android:layout_height="43dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/buttonshape"
+                android:shadowColor="#A8A8A8"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:text="Add"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

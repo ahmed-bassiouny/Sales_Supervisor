@@ -1,0 +1,163 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="pharmaproject.ahmed.example.packagecom.pharmaproject.ShowEmployeesOnline">
+
+
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:apiKey="AIzaSyCiAhY_2fey0r0mo1N6m8jcGrKkgWpPR6U"/>
+
+    <ScrollView
+    android:layout_width="wrap_content"
+    android:background="@drawable/border"
+        android:layout_weight="2"
+    android:layout_height="wrap_content"
+    android:backgroundTint="#fff"
+
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/employeesmap_showemployee"
+        android:visibility="gone"
+
+        >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp">
+            <com.github.siyamed.shapeimageview.CircularImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+
+                android:id="@+id/image_showemploye"
+                android:src="@drawable/logo"
+                app:siBorderWidth="3dp"
+                app:siBorderColor="#98b9b9"
+                android:elevation="6dp"
+                />
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" offline "
+                android:id="@+id/employeename"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" offline "
+        android:id="@+id/employeephone"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" offline "
+        android:id="@+id/employeeoffline"/>
+</LinearLayout>
+
+        </LinearLayout>
+
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:padding="2dp">-->
+
+
+            <!--&lt;!&ndash;<RatingBar&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/ratingBar"&ndash;&gt;-->
+
+                <!--&lt;!&ndash;android:scaleX=".4"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:scaleY=".4"/>&ndash;&gt;-->
+
+        <!--</LinearLayout>-->
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:background="@drawable/border"
+        android:layout_margin="10dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#fff"
+
+
+
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#fff"
+
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="2dp">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_picker_red"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" offline "/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_picker_green"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" online  "/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</RelativeLayout>

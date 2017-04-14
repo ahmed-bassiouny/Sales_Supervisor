@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Super Drug</string>
+
+    <string name="signup">Sign up</string>
+    <string name="signin">Sign in</string>
+    <string name="Registerpage">Register</string>
+    <string name="password">Password</string>
+    <string name="confirmpassword">Confirm Password</string>
+    <string name="phone">Phone</string>
+    <string name="name">Name</string>
+    <string name="area">Area</string>
+    <string name="proceed">Proceed</string>
+    <string name="email">Email</string>
+    <string name="lastlocation_Em_pro">Last location</string>
+    <string name="Rate_Em_pro">Rate</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
