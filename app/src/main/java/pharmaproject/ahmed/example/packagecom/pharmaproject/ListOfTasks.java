@@ -24,7 +24,7 @@ import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
  */
 public class ListOfTasks extends Fragment {
     RecyclerView recyclerView;
-    String EMAILTEMP;
+    String ID_TEMP;
     SwipeRefreshLayout mSwipeRefreshLayout;
     Task task;
     RatingBar averageRatingbar;
@@ -39,7 +39,7 @@ public class ListOfTasks extends Fragment {
         TextView empty = (TextView)view.findViewById(R.id.empty_view);
         nameemployee=(TextView) view.findViewById(R.id.nameemployee);
         empty.setTypeface(utils.getFont(getActivity()));
-        EMAILTEMP = getArguments().getString("KEY");
+        ID_TEMP = getArguments().getString("KEY");
         nameemployee.setTypeface(utils.getFont(getActivity()));
         nameemployee.setText(getArguments().getString("NAME"));
         averageRatingbar= (RatingBar) view.findViewById(R.id.ratingBarTotal);
@@ -77,6 +77,6 @@ public class ListOfTasks extends Fragment {
         mSwipeRefreshLayout.setRefreshing(true);
         if(task==null)
             task=new Task();
-        task.getTasks(recyclerView,getActivity(),EMAILTEMP,mSwipeRefreshLayout,averageRatingbar);
+        task.getTasks(recyclerView,getActivity(), ID_TEMP,mSwipeRefreshLayout,averageRatingbar);
     }
 }

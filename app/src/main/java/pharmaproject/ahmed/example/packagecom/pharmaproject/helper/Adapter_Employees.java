@@ -67,7 +67,7 @@ public class Adapter_Employees extends RecyclerView.Adapter<Adapter_Employees.Cu
         }
        // helper.loadImage(employee.phone,holder.img_android,fragmentActivity);
         Log.i("employee.email", employee.email);
-            helper.loadImage(employee.email, holder.img_android);
+            helper.loadImage(employee.id, holder.img_android);
 
     }
 
@@ -98,7 +98,7 @@ public class Adapter_Employees extends RecyclerView.Adapter<Adapter_Employees.Cu
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("KEY", employees.get(getAdapterPosition()).email);
+                    bundle.putString("KEY", employees.get(getAdapterPosition()).id);
                     helper.goToFragment(new EmployeeProfile(),"Back To Home",bundle);
                 }
             });

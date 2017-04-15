@@ -9,15 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,9 +24,7 @@ import java.util.ArrayList;
 
 import pharmaproject.ahmed.example.packagecom.pharmaproject.LatLong;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.Adapter_Employees;
-import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.Debuger;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
-import pharmaproject.ahmed.example.packagecom.pharmaproject.utils;
 
 /**
  * Created by ahmed on 19/03/17.
@@ -39,28 +34,25 @@ public class Employee {
 
     public String phone;
     public String name;
-    public String password;
-    public String lastLocation = "";
     public String email;
-    public String ip;
     public int rate;
     public boolean online = false;
+    public String lastLocation = "";
     public String CountOfTasks = "0";
     public int timeTrack = 1;
-    public String IMEI="";
+    public String id ;
     private helper helperobj;
-
+    private ProgressDialog progressDialog;
     public void insert() {
         getRoot().setValue(this);
     }
 
     public void update() {
         getRoot().child("phone").setValue(phone);
-        getRoot().child("password").setValue(password);
+        getRoot().child("email").setValue(email);
         getRoot().child("name").setValue(name);
         getRoot().child("rate").setValue(rate);
         getRoot().child("timeTrack").setValue(timeTrack);
-        getRoot().child("IMEI").setValue(IMEI);
     }
 
     public void deleteEmployee() {
@@ -97,24 +89,21 @@ public class Employee {
         Information.getDatabase().addValueEventListener(postListener);
     }
 
-    public void getEmployee(final String email, final TextView name, final TextView emailtxt, final TextView phone,
-                            final TextView password, final ImageView employeePhoto,
-                            final EditText time_track,final EditText imei,
+    public void getEmployee(final String id, final TextView name, final TextView emailtxt, final TextView phone,
+                            final ImageView employeePhoto, final EditText time_track,
                             final FragmentActivity fragmentActivity, final GoogleMap googleMap) {
         helperobj = new helper(fragmentActivity);
-        final ProgressDialog progressDialog = ProgressDialog.show(fragmentActivity,"Please Wait","",true,false);
+        progressDialog = ProgressDialog.show(fragmentActivity,"Please Wait","",true,false);
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Employee employee = dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(email).getValue(Employee.class);
+                Employee employee = dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(id).getValue(Employee.class);
                 name.setText(employee.name);
-                emailtxt.setText(employee.email.replace("*", "."));
+                emailtxt.setText(employee.email);
                 phone.setText(employee.phone);
                 lastLocation = employee.lastLocation;
                 time_track.setText(employee.timeTrack + "");
-                password.setText(employee.password);
-                imei.setText(employee.IMEI);
-                helperobj.loadImage(employee.email, employeePhoto);
+                helperobj.loadImage(employee.id, employeePhoto);
                 if (googleMap != null)
                     employee.updateMap(googleMap);
                 progressDialog.dismiss();
@@ -130,7 +119,7 @@ public class Employee {
     }
 
     private DatabaseReference getRoot() {
-        return Information.getDatabase().child("Supervisor").child(Information.CurrentUser).child(email);
+        return Information.getDatabase().child("Supervisor").child(Information.CurrentUser).child(id);
     }
 
     public void updateMap(GoogleMap googleMap)

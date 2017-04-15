@@ -64,31 +64,31 @@ public class Task {
     private int sum;
     private pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper helper;
 
-    public void insert(String email){
-            getCountOfTasks(email,this);
+    public void insert(String id_employee){
+            getCountOfTasks(id_employee,this);
     }
-    public void update(String email,boolean cancel){
+    public void update(String id_employee,boolean cancel){
         if(cancel){
-            getRoot().child(email).child(id+"").child("taskType").setValue(taskType);
+            getRoot().child(id_employee).child(id+"").child("taskType").setValue(taskType);
         }else{
-            getRoot().child(email).child(id+"").child("doctorName").setValue(doctorName);
-            getRoot().child(email).child(id+"").child("description").setValue(description);
-            getRoot().child(email).child(id+"").child("time_task").setValue(time_task);
-            getRoot().child(email).child(id+"").child("rateforEmployee").setValue(rateforEmployee);
+            getRoot().child(id_employee).child(id+"").child("doctorName").setValue(doctorName);
+            getRoot().child(id_employee).child(id+"").child("description").setValue(description);
+            getRoot().child(id_employee).child(id+"").child("time_task").setValue(time_task);
+            getRoot().child(id_employee).child(id+"").child("rateforEmployee").setValue(rateforEmployee);
         }
     }
-    public void deleteTask(String email){
-        getRoot().child(email).child(id+"").removeValue();
+    public void deleteTask(String id_employee){
+        getRoot().child(id_employee).child(id+"").removeValue();
     }
 
-    public void getTasks(final RecyclerView recyclerView, final FragmentActivity fragmentActivity, final String email,
+    public void getTasks(final RecyclerView recyclerView, final FragmentActivity fragmentActivity, final String id_employee,
                          final SwipeRefreshLayout mSwipeRefreshLayout,final RatingBar averageRatingbar){
         sum=0;
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final ArrayList<Task> tasks = new ArrayList<>();
-                for(DataSnapshot dss:dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(email).getChildren()){
+                for(DataSnapshot dss:dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(id_employee).getChildren()){
                     if(dss.hasChildren()) {
                         Task task = dss.getValue(Task.class);
                         sum+=task.rateforEmployee;
@@ -96,7 +96,7 @@ public class Task {
                     }
                 }
                 if(tasks.size()>0){
-                    Adapter_Tasks adapter_tasks = new Adapter_Tasks(tasks,fragmentActivity,email);
+                    Adapter_Tasks adapter_tasks = new Adapter_Tasks(tasks,fragmentActivity,id_employee);
                     recyclerView.setItemAnimator(new DefaultItemAnimator());
                     recyclerView.setAdapter(adapter_tasks);
                     averageRatingbar.setProgress(sum/tasks.size());
@@ -116,7 +116,7 @@ public class Task {
         Information.getDatabase().addValueEventListener(postListener);
     }
 
-    public void getTask(final String email, final int task_id, final EditText Doc_name,
+    public void getTask(final String id_employee, final int task_id, final EditText Doc_name,
                         final EditText Address, final EditText Task_time,
                         final EditText Task_Desc,
                         final SeekBar typetaskbar, final TextView typetasktxt,
@@ -129,7 +129,7 @@ public class Task {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final Task task = dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(email).child(task_id+"").getValue(Task.class);
+                final Task task = dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(id_employee).child(task_id+"").getValue(Task.class);
                 Doc_name.setText(task.doctorName);
                 locationDoctor=task.locationDoctor;
                 locationEmployee=task.locationEmployee;
@@ -137,7 +137,6 @@ public class Task {
                 taskType=task.taskType;
                 time_prepareTask=task.time_prepareTask;
                 locationPreparing=task.locationPreparing;
-                Log.i("Aaaaaaaaaaaaaa", task.locationDoctor);
                 if(!task.locationDoctor.isEmpty())
                 Address.setText(helper.getFullAddress(task.locationDoctor));
                 Task_time.setText(task.time_task);
@@ -214,17 +213,17 @@ public class Task {
         Information.getDatabase().addValueEventListener(postListener);
 
     }
-    private void getCountOfTasks(final String email, final Task task){
+    private void getCountOfTasks(final String id_employee, final Task task){
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String temp=dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(email).child("CountOfTasks").getValue(String.class);
+                String temp=dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(id_employee).child("CountOfTasks").getValue(String.class);
                 numberOfTasks=Integer.parseInt(temp);
                 numberOfTasks++;
                 task.id=numberOfTasks;
                 Log.i("id", task.id+"");
-                getRoot().child(email).child(numberOfTasks+"").setValue(task);
-                getRoot().child(email).child("CountOfTasks").setValue(numberOfTasks+"");
+                getRoot().child(id_employee).child(numberOfTasks+"").setValue(task);
+                getRoot().child(id_employee).child("CountOfTasks").setValue(numberOfTasks+"");
             }
 
             @Override

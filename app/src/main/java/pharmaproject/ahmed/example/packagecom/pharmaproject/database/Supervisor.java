@@ -33,7 +33,7 @@ import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
 
 public class Supervisor {
 
-    public String androidID;
+    public String id;
     public String email;
     public String name;
     public String phone;
@@ -50,6 +50,7 @@ public class Supervisor {
         getRoot().child("name").setValue(name);
         getRoot().child("phone").setValue(phone);
         getRoot().child("area").setValue(area);
+        getRoot().child("email").setValue(email);
         Debuger.Toast(context,"Updated");
     }
     public void getSupervisor(final TextView email,
@@ -61,12 +62,11 @@ public class Supervisor {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Supervisor supervisor=dataSnapshot.child("Supervisor").child(Information.CurrentUser).getValue(Supervisor.class);
-                String temp=Information.CurrentUser;
-                email.setText(temp.replace("*","."));
+                email.setText(supervisor.email);
                 name.setText(supervisor.name);
                 phone.setText(supervisor.phone);
                 area.setText(supervisor.area);
-                helper.loadImage(FirebaseAuth.getInstance().getCurrentUser().getEmail(),imageprofile);
+                helper.loadImage(Information.CurrentUser,imageprofile);
             }
 
             @Override

@@ -67,7 +67,7 @@
             android:paddingLeft="10dp" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/id"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
@@ -75,7 +75,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/roundedittext"
             android:drawableLeft="@drawable/ph_password"
-            android:hint="@string/password"
+            android:hint="ID"
             android:drawablePadding="10dp"
             android:inputType="textPersonName"
             android:paddingLeft="10dp" />

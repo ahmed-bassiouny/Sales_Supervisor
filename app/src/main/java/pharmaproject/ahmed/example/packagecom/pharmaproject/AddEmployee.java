@@ -19,12 +19,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -34,7 +30,6 @@ import java.util.regex.Pattern;
 
 import pharmaproject.ahmed.example.packagecom.pharmaproject.database.Employee;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.Debuger;
-import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
 
 
 /**
@@ -43,16 +38,16 @@ import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
 public class AddEmployee extends Fragment {
     Button add_employee_btn;
     TextView title;
-    EditText nameEdit, phone, password, email;
+    EditText nameEdit, phone, id, email;
     ImageView chooseimage;
     ImageView imageEmployee;
     //private FirebaseAuth mAuth;
     private int chooseimageResult = 100;
 
     public final Pattern PASSWORD_PATTERN =
-           Pattern.compile( "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", Pattern.CASE_INSENSITIVE);
+            Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", Pattern.CASE_INSENSITIVE);
 
-    public  final Pattern VALID_EMAIL_ADDRESS_REGEX =
+    public final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     Uri uriImage;
 
@@ -60,11 +55,11 @@ public class AddEmployee extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_employee, container, false);
-        title= (TextView) view.findViewById(R.id.title);
+        title = (TextView) view.findViewById(R.id.title);
         add_employee_btn = (Button) view.findViewById(R.id.add_employee_btn);
         nameEdit = (EditText) view.findViewById(R.id.nameEdit);
         phone = (EditText) view.findViewById(R.id.phone);
-        password = (EditText) view.findViewById(R.id.password);
+        id = (EditText) view.findViewById(R.id.id);
         email = (EditText) view.findViewById(R.id.email);
         chooseimage = (ImageView) view.findViewById(R.id.chooseimage);
         imageEmployee = (ImageView) view.findViewById(R.id.imageEmployee);
@@ -74,30 +69,30 @@ public class AddEmployee extends Fragment {
         add_employee_btn.setTypeface(utils.getFont(getContext()));
         nameEdit.setTypeface(utils.getFont(getContext()));
         phone.setTypeface(utils.getFont(getContext()));
-        password.setTypeface(utils.getFont(getContext()));
+        id.setTypeface(utils.getFont(getContext()));
         email.setTypeface(utils.getFont(getContext()));
         title.setTypeface(utils.getFont(getContext()));
 
         return view;
     }
-    public boolean ValidateEmailAddress()
-    {
-       boolean  isValidMail=true;
+
+    public boolean ValidateEmailAddress() {
+        boolean isValidMail = true;
         String strEmailAddress = email.getText().toString().trim();
 
         Matcher matcherObj = VALID_EMAIL_ADDRESS_REGEX.matcher(strEmailAddress);
 
-        if (!matcherObj.matches()||strEmailAddress.isEmpty()) {
+        if (!matcherObj.matches() || strEmailAddress.isEmpty()) {
 
             Debuger.Toast(getActivity(), "Your Email is invalid");
-            isValidMail=false;
+            isValidMail = false;
         }
         return isValidMail;
     }
-    public boolean ValidatePassword()
+    /*public boolean ValidatePassword()
     {
         boolean  isValidPassword=true;
-        String strPassword = password.getText().toString().trim();
+        String strPassword = id.getText().toString().trim();
 
         Matcher matcherObj = PASSWORD_PATTERN.matcher(strPassword);
 
@@ -106,37 +101,34 @@ public class AddEmployee extends Fragment {
             isValidPassword=false;
         }
         return isValidPassword;
-    }
+    }*/
 
 
-    public boolean ValidateName()
-    {
-        boolean  isValidName=true;
+    public boolean ValidateName() {
+        boolean isValidName = true;
         String strName = nameEdit.getText().toString().trim();
         if (strName.isEmpty()) {
             Debuger.Toast(getActivity(), "Your name is valid");
-            isValidName=false;
+            isValidName = false;
         }
         return isValidName;
     }
 
     private boolean ValidateMobile() {
-        boolean check=true;
+        boolean check = true;
         String strPhone = phone.getText().toString().trim();
-        if(!Pattern.matches("[a-zA-Z]+", strPhone)||strPhone.isEmpty()) {
-            if(phone.length() !=11) {
+        if (!Pattern.matches("[a-zA-Z]+", strPhone) || strPhone.isEmpty()) {
+            if (phone.length() != 11) {
                 check = false;
                 Debuger.Toast(getActivity(), "Your number is invalid");
             } else {
                 check = true;
             }
         } else {
-            check=false;
+            check = false;
         }
         return check;
     }
-
-
 
 
     @Override
@@ -146,11 +138,11 @@ public class AddEmployee extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(ValidateEmailAddress()&&ValidatePassword()&&ValidateName()&&ValidateMobile()){
+                if (ValidateEmailAddress() && ValidateName() && ValidateMobile()) {
 
-                            createNewEmployee();
+                    createNewEmployee();
 
-                }else{
+                } else {
                     Debuger.Toast(getActivity(), "Please Double check your data entered");
                 }
 
@@ -176,7 +168,7 @@ public class AddEmployee extends Fragment {
                 return;
             }
             try {
-                uriImage= data.getData();
+                uriImage = data.getData();
                 imageEmployee.setImageURI(uriImage);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -185,50 +177,51 @@ public class AddEmployee extends Fragment {
         }
     }
 
-    private void uploadImage(String email) {
+    private void uploadImage(String id) {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         progressDialog.setTitle("Please Wait");
         progressDialog.setCancelable(false);
         progressDialog.show();
-        StorageReference filepath = storageReference.child(email);
+        StorageReference filepath = storageReference.child(id);
         filepath.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 progressDialog.dismiss();
-                Debuger.Toast(getActivity(),"Upload Done");
+                Debuger.Toast(getActivity(), "Upload Done");
                 getFragmentManager().popBackStack();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 progressDialog.dismiss();
-                Debuger.Toast(getActivity(),e.getLocalizedMessage());
+                Debuger.Toast(getActivity(), e.getLocalizedMessage());
                 getFragmentManager().popBackStack();
             }
         });
 
     }
-    public void createNewEmployee()
-    {
-            Employee employee = new Employee();
-            employee.name = nameEdit.getText().toString();
-            employee.phone = phone.getText().toString();
-            employee.password = password.getText().toString();
-            employee.email = email.getText().toString().replace(".","*");
-            employee.insert();
-            if(uriImage!=null)
-                uploadImage( employee.email);
-            else{
-                getFragmentManager().popBackStack();
-            }
-            Debuger.Toast(getActivity(),"Add Employee Successful");;
+
+    public void createNewEmployee() {
+        Employee employee = new Employee();
+        employee.name = nameEdit.getText().toString();
+        employee.phone = phone.getText().toString();
+        employee.email = email.getText().toString();
+        employee.id=id.getText().toString();
+        employee.insert();
+        if (uriImage != null)
+            uploadImage(employee.id);
+        else {
+            getFragmentManager().popBackStack();
+        }
+        Debuger.Toast(getActivity(), "Add Employee Successful");
+        ;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add Employee");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Add Employee");
         MainContainerActivity.drawlayoutmain.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 }

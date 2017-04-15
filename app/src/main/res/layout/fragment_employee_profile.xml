@@ -109,32 +109,6 @@
             </LinearLayout>
 
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="-5dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ph_password"
-                    />
-
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:textColor="#000"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:hint="Password"
-                    android:id="@+id/password"/>
-            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -186,7 +160,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="5dp"
                     android:hint=" ID"
-                    android:id="@+id/imei"/>
+                    android:id="@+id/id"/>
 
 
             </LinearLayout>
