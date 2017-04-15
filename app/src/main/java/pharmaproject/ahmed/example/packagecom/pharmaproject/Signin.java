@@ -48,6 +48,12 @@ public class Signin extends AppCompatActivity {
             startActivity(new Intent(Signin.this,isConnected.class));
             finish();
         }
+        if (utils.isloged(this)) {
+            Information.CurrentUser=utils.getAndroidID(this);
+            Intent intent = new Intent(Signin.this, MainContainerActivity.class);
+            startActivity(intent);
+            finish();
+        }
         email = (EditText) findViewById(R.id.email);
         signin = (Button) findViewById(R.id.signin);
         getandroidid = (TextView) findViewById(R.id.getandroidid);
@@ -86,18 +92,6 @@ public class Signin extends AppCompatActivity {
             }
         });
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (utils.isloged(this)) {
-            Information.CurrentUser=utils.getAndroidID(this);
-            Intent intent = new Intent(Signin.this, MainContainerActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
-
-
     private boolean isConnected(){
         ConnectivityManager cm =
                 (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -113,11 +107,11 @@ public class Signin extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    for (DataSnapshot childDataSnapshot : dataSnapshot.child("Supervisors").getChildren()) {
+                    for (DataSnapshot childDataSnapshot : dataSnapshot.child("Supervisor").getChildren()) {
                         if (childDataSnapshot.getKey().equals(utils.getAndroidID(getApplicationContext()))){
-                            if (dataSnapshot.child("Supervisors").child(utils.getAndroidID(getApplicationContext()))
+                            if (dataSnapshot.child("Supervisor").child(utils.getAndroidID(getApplicationContext()))
                                     .child("email").getValue().toString().equals(email)){
-                                if(dataSnapshot.child("Supervisors").child(utils.getAndroidID(getApplicationContext()))
+                                if(dataSnapshot.child("Supervisor").child(utils.getAndroidID(getApplicationContext()))
                                         .child("access").getValue(Boolean.class)){
                                     Information.CurrentUser=utils.getAndroidID(getApplicationContext());
                                     utils.login(Signin.this,true);
