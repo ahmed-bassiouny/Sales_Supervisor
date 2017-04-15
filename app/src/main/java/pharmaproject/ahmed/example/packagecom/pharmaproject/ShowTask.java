@@ -195,6 +195,7 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
     @Override
     public void onResume() {
         super.onResume();
+        utils.showProgess(getContext());
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Task");
         MainContainerActivity.drawlayoutmain.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
@@ -231,4 +232,9 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
 
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        task.removeListener(EMAIL);
+    }
 }

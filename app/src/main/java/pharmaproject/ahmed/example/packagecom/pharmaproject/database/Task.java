@@ -62,33 +62,33 @@ public class Task {
     public int rateforDoctor;
     private int numberOfTasks;
     private int sum;
-    private pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper helper;
-
+    private ValueEventListener postListener;
+    private helper helper;
     public void insert(String id_employee){
             getCountOfTasks(id_employee,this);
     }
     public void update(String id_employee,boolean cancel){
         if(cancel){
-            getRoot().child(id_employee).child(id+"").child("taskType").setValue(taskType);
+            getRoot(id_employee).child(id+"").child("taskType").setValue(taskType);
         }else{
-            getRoot().child(id_employee).child(id+"").child("doctorName").setValue(doctorName);
-            getRoot().child(id_employee).child(id+"").child("description").setValue(description);
-            getRoot().child(id_employee).child(id+"").child("time_task").setValue(time_task);
-            getRoot().child(id_employee).child(id+"").child("rateforEmployee").setValue(rateforEmployee);
+            getRoot(id_employee).child(id+"").child("doctorName").setValue(doctorName);
+            getRoot(id_employee).child(id+"").child("description").setValue(description);
+            getRoot(id_employee).child(id+"").child("time_task").setValue(time_task);
+            getRoot(id_employee).child(id+"").child("rateforEmployee").setValue(rateforEmployee);
         }
     }
     public void deleteTask(String id_employee){
-        getRoot().child(id_employee).child(id+"").removeValue();
+        getRoot(id_employee).child(id+"").removeValue();
     }
 
     public void getTasks(final RecyclerView recyclerView, final FragmentActivity fragmentActivity, final String id_employee,
                          final SwipeRefreshLayout mSwipeRefreshLayout,final RatingBar averageRatingbar){
         sum=0;
-        ValueEventListener postListener = new ValueEventListener() {
+         postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final ArrayList<Task> tasks = new ArrayList<>();
-                for(DataSnapshot dss:dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(id_employee).getChildren()){
+                for(DataSnapshot dss:dataSnapshot.getChildren()){
                     if(dss.hasChildren()) {
                         Task task = dss.getValue(Task.class);
                         sum+=task.rateforEmployee;
@@ -113,7 +113,7 @@ public class Task {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         };
-        Information.getDatabase().addValueEventListener(postListener);
+        getRoot(id_employee).orderByChild("time_task").addValueEventListener(postListener);
     }
 
     public void getTask(final String id_employee, final int task_id, final EditText Doc_name,
@@ -124,12 +124,12 @@ public class Task {
                         final ImageView canceltask, final ImageView editask,
                         final ImageView feedbackimg, final GoogleMap googleMap,
                         final RatingBar ratingBar,final EditText Task_duration){
-        helper=new helper(fragmentActivity);
-        utils.showProgess(fragmentActivity);
-        ValueEventListener postListener = new ValueEventListener() {
+        if(helper==null);
+            helper=new helper(fragmentActivity);
+         postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                final Task task = dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(id_employee).child(task_id+"").getValue(Task.class);
+                final Task task = dataSnapshot.child(task_id+"").getValue(Task.class);
                 Doc_name.setText(task.doctorName);
                 locationDoctor=task.locationDoctor;
                 locationEmployee=task.locationEmployee;
@@ -210,11 +210,11 @@ public class Task {
                 utils.dismissProgress();
             }
         };
-        Information.getDatabase().addValueEventListener(postListener);
+        getRoot(id_employee).addValueEventListener(postListener);
 
     }
     private void getCountOfTasks(final String id_employee, final Task task){
-        ValueEventListener postListener = new ValueEventListener() {
+         postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String temp=dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(id_employee).child("CountOfTasks").getValue(String.class);
@@ -222,8 +222,8 @@ public class Task {
                 numberOfTasks++;
                 task.id=numberOfTasks;
                 Log.i("id", task.id+"");
-                getRoot().child(id_employee).child(numberOfTasks+"").setValue(task);
-                getRoot().child(id_employee).child("CountOfTasks").setValue(numberOfTasks+"");
+                getRoot(id_employee).child(numberOfTasks+"").setValue(task);
+                getRoot(id_employee).child("CountOfTasks").setValue(numberOfTasks+"");
             }
 
             @Override
@@ -233,8 +233,8 @@ public class Task {
         };
         Information.getDatabase().addListenerForSingleValueEvent(postListener);
     }
-    private DatabaseReference getRoot(){
-        return Information.getDatabase().child("Supervisor").child(Information.CurrentUser);
+    private DatabaseReference getRoot(String id_employee){
+        return Information.getDatabase().child("Supervisor").child(Information.CurrentUser).child(id_employee);
     }
 
     // Hossam Code
@@ -292,19 +292,19 @@ public class Task {
         long hoursInMilli = minutesInMilli * 60;
         long daysInMilli = hoursInMilli * 24;
 
-        long elapsedDays = different / daysInMilli;
         different = different % daysInMilli;
 
         long elapsedHours = different / hoursInMilli;
         different = different % hoursInMilli;
 
         long elapsedMinutes = different / minutesInMilli;
-        different = different % minutesInMilli;
 
-        long elapsedSeconds = different / secondsInMilli;
 
         String Output=elapsedHours+"Hours ,"+elapsedMinutes+" Minutes ";
 
         return Output;
-    };
+    }
+    public void removeListener(String id_employee){
+        getRoot(id_employee).removeEventListener(postListener);
+    }
 }

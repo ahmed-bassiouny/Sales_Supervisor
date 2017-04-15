@@ -68,4 +68,10 @@ public class Home extends Fragment {
             employee=new Employee();
         employee.getEmployeesForHome(recyclerView,getActivity(),mSwipeRefreshLayout);
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        employee.removeListner();
+    }
 }

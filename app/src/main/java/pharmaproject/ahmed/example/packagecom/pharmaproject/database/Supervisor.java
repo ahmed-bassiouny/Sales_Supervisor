@@ -26,6 +26,7 @@ import pharmaproject.ahmed.example.packagecom.pharmaproject.ResetPassword;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.Adapter_Employees;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.Debuger;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
+import pharmaproject.ahmed.example.packagecom.pharmaproject.utils;
 
 /**
  * Created by ahmed on 19/03/17.
@@ -39,6 +40,7 @@ public class Supervisor {
     public String phone;
     public String area;
     public boolean access;
+    private ValueEventListener postListener;
 
     public void insert(){
         getRoot().setValue(this);
@@ -46,6 +48,7 @@ public class Supervisor {
     private DatabaseReference getRoot(){
         return Information.getDatabase().child("Supervisor").child(Information.CurrentUser);
     }
+
     public void UpdateAnotherinfo(final Context context){
         getRoot().child("name").setValue(name);
         getRoot().child("phone").setValue(phone);
@@ -57,8 +60,7 @@ public class Supervisor {
                               final EditText name, final EditText phone,
                               final EditText area, final ImageView imageprofile,
                               final FragmentActivity fragmentActivity) {
-        final helper helper = new helper(fragmentActivity);
-        ValueEventListener postListener = new ValueEventListener() {
+         postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Supervisor supervisor=dataSnapshot.child("Supervisor").child(Information.CurrentUser).getValue(Supervisor.class);
@@ -66,14 +68,13 @@ public class Supervisor {
                 name.setText(supervisor.name);
                 phone.setText(supervisor.phone);
                 area.setText(supervisor.area);
-                helper.loadImage(Information.CurrentUser,imageprofile);
+                utils.loadImage(Information.CurrentUser,imageprofile,fragmentActivity);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         };
-        Information.getDatabase().addValueEventListener(postListener);
+        Information.getDatabase().addListenerForSingleValueEvent(postListener);
     }
-
 }

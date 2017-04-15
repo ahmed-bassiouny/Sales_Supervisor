@@ -63,22 +63,7 @@ public class helper {
             fragmentTransaction.addToBackStack(tag);
         fragmentTransaction.commit();
     }
-    public void loadImage(String phone, final ImageView imageView){
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(phone);
-        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.with(fragmentActivity).load(uri).placeholder(R.drawable.logo).into(imageView);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.i("TAG", e.getLocalizedMessage());
-            }
-        });
 
-
-    }
     /*public static void loadImage(FragmentActivity fragmentActivity ,String phone,ImageView imageView)
     {
 

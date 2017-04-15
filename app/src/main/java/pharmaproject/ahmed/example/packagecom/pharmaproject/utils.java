@@ -80,4 +80,19 @@ public class utils {
         editor.putBoolean("loged", login);
         editor.commit();
     }
+
+    public static void loadImage(String phone, final ImageView imageView,final FragmentActivity fragmentActivity){
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(phone);
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(fragmentActivity).load(uri).placeholder(R.drawable.logo).into(imageView);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.i("TAG", e.getLocalizedMessage());
+            }
+        });
+    }
 }

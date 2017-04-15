@@ -30,8 +30,7 @@ public class Adapter_Employees extends RecyclerView.Adapter<Adapter_Employees.Cu
 
     private ArrayList <Employee> employees ;
     FragmentActivity fragmentActivity;
-    pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper helper ;
-    private boolean downloadImage=true;
+    helper helper;
 
 
     public Adapter_Employees(ArrayList <Employee> employees, FragmentActivity fragmentActivity){
@@ -67,7 +66,7 @@ public class Adapter_Employees extends RecyclerView.Adapter<Adapter_Employees.Cu
         }
        // helper.loadImage(employee.phone,holder.img_android,fragmentActivity);
         Log.i("employee.email", employee.email);
-            helper.loadImage(employee.id, holder.img_android);
+            utils.loadImage(employee.id, holder.img_android,fragmentActivity);
 
     }
 

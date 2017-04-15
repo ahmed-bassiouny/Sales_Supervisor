@@ -31,7 +31,7 @@ public class Adapter_Tasks extends RecyclerView.Adapter<Adapter_Tasks.CustomView
     private ArrayList <Task> tasks ;
     FragmentActivity fragmentActivity;
     String email;
-    pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper helper;
+    helper helper;
 
 
     public Adapter_Tasks(ArrayList <Task> tasks, FragmentActivity fragmentActivity,String email){

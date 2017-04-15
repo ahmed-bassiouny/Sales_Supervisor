@@ -224,7 +224,8 @@ public class EmployeeProfile extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mapView.onResume();
-        employee.getEmployee(ID_TEMP, name, email, phone, employeePhoto, time_track, getActivity(), googleMap);
+        employee.id=ID_TEMP;
+        employee.getEmployee(name, email, phone, employeePhoto, time_track, getActivity(), googleMap);
 
     }
 
@@ -296,6 +297,11 @@ public class EmployeeProfile extends Fragment implements OnMapReadyCallback {
         return isValidName;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        employee.removeListner();
+    }
 }
 
 

@@ -79,4 +79,10 @@ public class ListOfTasks extends Fragment {
             task=new Task();
         task.getTasks(recyclerView,getActivity(), ID_TEMP,mSwipeRefreshLayout,averageRatingbar);
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        task.removeListener(ID_TEMP);
+    }
 }

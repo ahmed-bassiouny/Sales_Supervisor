@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.LatLong;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.Adapter_Employees;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
+import pharmaproject.ahmed.example.packagecom.pharmaproject.utils;
 
 /**
  * Created by ahmed on 19/03/17.
@@ -41,8 +42,8 @@ public class Employee {
     public String CountOfTasks = "0";
     public int timeTrack = 1;
     public String id ;
-    private helper helperobj;
     private ProgressDialog progressDialog;
+    private ValueEventListener postListener;
     public void insert() {
         getRoot().setValue(this);
     }
@@ -60,7 +61,7 @@ public class Employee {
     }
 
     public void getEmployeesForHome(final RecyclerView recyclerView, final FragmentActivity fragmentActivity, final SwipeRefreshLayout swipeRefreshLayout) {
-        ValueEventListener postListener = new ValueEventListener() {
+         postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<Employee> employees = new ArrayList<>();
@@ -89,33 +90,32 @@ public class Employee {
         Information.getDatabase().addValueEventListener(postListener);
     }
 
-    public void getEmployee(final String id, final TextView name, final TextView emailtxt, final TextView phone,
+    public void getEmployee( final TextView name, final TextView emailtxt, final TextView phone,
                             final ImageView employeePhoto, final EditText time_track,
                             final FragmentActivity fragmentActivity, final GoogleMap googleMap) {
-        helperobj = new helper(fragmentActivity);
-        progressDialog = ProgressDialog.show(fragmentActivity,"Please Wait","",true,false);
-        ValueEventListener postListener = new ValueEventListener() {
+        utils.showProgess(fragmentActivity);
+         postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Employee employee = dataSnapshot.child("Supervisor").child(Information.CurrentUser).child(id).getValue(Employee.class);
+                Employee employee = dataSnapshot.getValue(Employee.class);
                 name.setText(employee.name);
                 emailtxt.setText(employee.email);
                 phone.setText(employee.phone);
                 lastLocation = employee.lastLocation;
                 time_track.setText(employee.timeTrack + "");
-                helperobj.loadImage(employee.id, employeePhoto);
+                utils.loadImage(employee.id, employeePhoto,fragmentActivity);
                 if (googleMap != null)
                     employee.updateMap(googleMap);
-                progressDialog.dismiss();
+                utils.dismissProgress();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.i("mytag", databaseError.getMessage());
-                progressDialog.dismiss();
+                utils.dismissProgress();
             }
         };
-        Information.getDatabase().addValueEventListener(postListener);
+        getRoot().addValueEventListener(postListener);
     }
 
     private DatabaseReference getRoot() {
@@ -132,5 +132,8 @@ public class Employee {
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(LatLong.getLat(lastLocation), LatLong.getLongt(lastLocation)), 15), 1000, null);
         }
 
+    }
+    public void removeListner(){
+        Information.getDatabase().removeEventListener(postListener);
     }
 }

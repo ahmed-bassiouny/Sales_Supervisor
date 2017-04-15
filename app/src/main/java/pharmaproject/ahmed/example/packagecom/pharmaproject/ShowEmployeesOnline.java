@@ -50,13 +50,11 @@ public class ShowEmployeesOnline extends Fragment implements OnMapReadyCallback 
     ScrollView employeeData ;
     TextView employephone, Email,offline;
     ImageView imageView;
-
-
+    ValueEventListener postListener;
 
 
 
     List<Employee>employeeArrayforData = new ArrayList<>();
-    helper mhelper =new helper(getActivity());
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -193,7 +191,7 @@ public class ShowEmployeesOnline extends Fragment implements OnMapReadyCallback 
     }
     private void getDataEmployee(){
 
-        ValueEventListener postListener = new ValueEventListener() {
+         postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<Employee>employees= new ArrayList<>();
@@ -245,7 +243,7 @@ public class ShowEmployeesOnline extends Fragment implements OnMapReadyCallback 
 
 
         //Picasso.with(getActivity()).load("http://i.imgur.com/DvpvklR.png").into(imageView);
-       mhelper.loadImage(employeeArrayforData.get(Integer.parseInt(employeenumber[0])).email,imageView);
+       utils.loadImage(employeeArrayforData.get(Integer.parseInt(employeenumber[0])).email,imageView,getActivity());
 //
     return false;
 
@@ -259,6 +257,9 @@ public class ShowEmployeesOnline extends Fragment implements OnMapReadyCallback 
 
     }
 
-
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        Information.getDatabase().removeEventListener(postListener);
+    }
 }
