@@ -2,6 +2,7 @@ package pharmaproject.ahmed.example.packagecom.pharmaproject;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,8 +17,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import pharmaproject.ahmed.example.packagecom.pharmaproject.database.Employee;
+import pharmaproject.ahmed.example.packagecom.pharmaproject.database.Information;
+import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.Debuger;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
 
 

@@ -118,7 +118,7 @@ public class Task {
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         };
-        getRoot(id_employee).orderByChild("time_task").addValueEventListener(postListener);
+        getRoot(id_employee).orderByChild("time_task").addListenerForSingleValueEvent(postListener);
     }
 
     public void getTask(final String id_employee, final int task_id, final EditText Doc_name,

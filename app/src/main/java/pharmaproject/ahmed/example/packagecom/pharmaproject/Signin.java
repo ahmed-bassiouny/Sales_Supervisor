@@ -48,7 +48,7 @@ public class Signin extends AppCompatActivity {
             startActivity(new Intent(Signin.this,isConnected.class));
             finish();
         }
-        if (utils.isloged(this)) {
+        else if(utils.isloged(this)) {
             Information.CurrentUser=utils.getAndroidID(this);
             Intent intent = new Intent(Signin.this, MainContainerActivity.class);
             startActivity(intent);
@@ -135,6 +135,5 @@ public class Signin extends AppCompatActivity {
                     progressDialog.dismiss();
                 }
             }));
-
     }
 }
