@@ -82,7 +82,7 @@ public class Task {
     }
 
     public void getTasks(final RecyclerView recyclerView, final FragmentActivity fragmentActivity, final String id_employee,
-                         final SwipeRefreshLayout mSwipeRefreshLayout,final RatingBar averageRatingbar){
+                         final SwipeRefreshLayout mSwipeRefreshLayout, final RatingBar averageRatingbar, final TaskType taskTypeselected){
         sum=0;
          postListener = new ValueEventListener() {
             @Override
@@ -91,8 +91,13 @@ public class Task {
                 for(DataSnapshot dss:dataSnapshot.getChildren()){
                     if(dss.hasChildren()) {
                         Task task = dss.getValue(Task.class);
-                        sum+=task.rateforEmployee;
-                        tasks.add(task);
+                        if(taskTypeselected==TaskType.All) {
+                            sum += task.rateforEmployee;
+                            tasks.add(task);
+                        }else if(taskTypeselected==task.taskType){
+                            sum += task.rateforEmployee;
+                            tasks.add(task);
+                        }
                     }
                 }
                 if(tasks.size()>0){
@@ -101,7 +106,7 @@ public class Task {
                     recyclerView.setAdapter(adapter_tasks);
                     averageRatingbar.setProgress(sum/tasks.size());
                 }else{
-                    mSwipeRefreshLayout.setVisibility(View.GONE);
+                    recyclerView.setAdapter(null);
                 }
 
                 mSwipeRefreshLayout.setRefreshing(false);

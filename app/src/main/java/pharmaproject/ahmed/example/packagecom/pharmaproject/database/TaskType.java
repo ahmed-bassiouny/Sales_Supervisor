@@ -5,5 +5,5 @@ package pharmaproject.ahmed.example.packagecom.pharmaproject.database;
  */
 
 public enum TaskType {
-    COMPLETE , On_The_Way,PROCESSING, INCOMPLETE,CANCEL
+    All,COMPLETE , On_The_Way,PROCESSING, INCOMPLETE,CANCEL
 }
