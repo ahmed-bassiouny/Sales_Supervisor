@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.Debuger;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
 
 import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
+import static pharmaproject.ahmed.example.packagecom.pharmaproject.ShowTask.weekly;
 
 
 /**
@@ -46,6 +48,7 @@ import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
  */
 public class AddTask extends Fragment {
     EditText Address, Time, Description;
+    CheckBox Repeat;
     AutoCompleteTextView DoctorName;
     Button save;
     String EMAILTEMP;
@@ -64,6 +67,7 @@ public class AddTask extends Fragment {
         Description= (EditText) view.findViewById(R.id.Task_Desc);
         save= (Button) view.findViewById(R.id.save);
         nameEmployee=(TextView)view.findViewById(R.id.nameEmployee);
+        Repeat= (CheckBox) view.findViewById(R.id.Repeat);
         EMAILTEMP = getArguments().getString("KEY");
         nameEmployee.setText(getArguments().getString("nameEmployee"));
         getDoctors();
@@ -100,6 +104,16 @@ public class AddTask extends Fragment {
             @Override
             public void onClick(View v) {
                 helper.viewDialogeDate(Time);
+            }
+        });
+        Repeat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Repeat.isChecked()) {
+                    weekly=true;
+                }else{
+                    weekly=false;
+                }
             }
         });
     }

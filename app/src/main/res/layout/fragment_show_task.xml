@@ -200,6 +200,13 @@
             android:src="@drawable/cancel"
             android:visibility="invisible" />
 
+        <CheckBox
+            android:text="Repeat"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/Repeat"
+            android:layout_weight="0.80" />
+
         <ImageView
             android:id="@+id/editask"
             android:layout_width="40dp"

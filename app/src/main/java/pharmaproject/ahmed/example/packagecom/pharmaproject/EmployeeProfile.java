@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -44,6 +45,7 @@ public class EmployeeProfile extends Fragment implements OnMapReadyCallback {
 
     EditText email, phone, name, time_track,id;
     ImageView employeePhoto, editProfile;
+
     String ID_TEMP;
     ImageView addtask, showtasks, callemployee;
     pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper helper;

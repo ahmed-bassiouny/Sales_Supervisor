@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -49,6 +50,8 @@ import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
 public class ShowTask extends Fragment implements OnMapReadyCallback {
 
     EditText Doc_name,Address,Task_time,Task_Desc,Task_duration;
+    CheckBox Repeat;
+    public static boolean weekly=false;
     SeekBar typetaskbar;
     TextView typetasktxt;
     RatingBar ratingBar;
@@ -85,6 +88,8 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
         typetasktxt.setTypeface(utils.getFont(getContext()));
 
         //******
+        Repeat= (CheckBox) view.findViewById(R.id.Repeat);
+        //***********
        // scrollInfo=(ScrollView) view.findViewById(R.id.scrollInfo);
         //******
         editask=(ImageView)view.findViewById(R.id.editask);
@@ -140,6 +145,16 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
             @Override
             public void onClick(View v) {
                 cancelTaskWithDialog();
+            }
+        });
+        Repeat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             if(Repeat.isChecked()) {
+                 weekly=true;
+             }else{
+                 weekly=false;
+             }
             }
         });
     }

@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import pharmaproject.ahmed.example.packagecom.pharmaproject.LatLong;
+import pharmaproject.ahmed.example.packagecom.pharmaproject.ShowTask;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.Adapter_Employees;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.utils;
@@ -54,6 +55,7 @@ public class Employee {
         getRoot().child("name").setValue(name);
         getRoot().child("rate").setValue(rate);
         getRoot().child("timeTrack").setValue(timeTrack);
+        getRoot().child("Repeat").setValue(ShowTask.weekly);
     }
 
     public void deleteEmployee() {
@@ -136,4 +138,6 @@ public class Employee {
     public void removeListner(){
         Information.getDatabase().removeEventListener(postListener);
     }
+
+
 }

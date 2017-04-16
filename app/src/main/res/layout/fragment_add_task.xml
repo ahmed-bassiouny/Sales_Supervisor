@@ -86,7 +86,18 @@
                 android:inputType="textMultiLine"
                 android:padding="10dp" />
 
+            <CheckBox
 
+                android:hint="Repeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginLeft="-20dp"
+                android:background="@drawable/roundedittext"
+                android:drawablePadding="10dp"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:id="@+id/Repeat" />
             <Button
                 android:id="@+id/save"
                 android:layout_width="119dp"
@@ -101,6 +112,8 @@
                 android:text="Add"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp" />
+
+
         </LinearLayout>
 
     </LinearLayout>
