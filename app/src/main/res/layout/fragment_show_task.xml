@@ -190,26 +190,27 @@
         android:layout_margin="8dp"
         android:background="@drawable/border"
         android:orientation="horizontal"
-        android:weightSum="3">
+        android:weightSum="4">
+
+
+        <CheckBox
+            android:text="Repeat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/repeat"
+            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/canceltask"
-            android:layout_width="40dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/cancel"
             android:visibility="invisible" />
 
-        <CheckBox
-            android:text="Repeat"
-            android:layout_width="77dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/Repeat"
-            android:layout_weight="0.80" />
-
         <ImageView
             android:id="@+id/editask"
-            android:layout_width="40dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ph_edit"
@@ -217,7 +218,7 @@
 
         <ImageView
             android:id="@+id/feedback"
-            android:layout_width="40dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:saveEnabled="false"

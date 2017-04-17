@@ -28,10 +28,14 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
 
 /**
  * Created by ahmed on 26/03/17.
@@ -94,5 +98,18 @@ public class utils {
                 Log.i("TAG", e.getLocalizedMessage());
             }
         });
+    }
+    public static String dateAfter7Day(String oldDate){
+        String newDate;
+        try {
+            Date date =helper.dateformate.parse(oldDate);
+            Calendar calendar =Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.DATE,7);
+            newDate=helper.dateformate.format(calendar.getTime());
+        } catch (ParseException e) {
+            newDate=oldDate;
+        }
+        return newDate;
     }
 }

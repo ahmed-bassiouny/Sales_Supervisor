@@ -107,6 +107,6 @@ public class ListOfTasks extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        task.removeListener(ID_TEMP);
+        task.removeListener();
     }
 }

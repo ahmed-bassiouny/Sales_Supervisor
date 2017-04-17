@@ -39,9 +39,6 @@ import pharmaproject.ahmed.example.packagecom.pharmaproject.database.TaskType;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.Debuger;
 import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
 
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
-import static pharmaproject.ahmed.example.packagecom.pharmaproject.ShowTask.weekly;
-
 
 /**
  * A simple {@link 2Fragment} subclass.
@@ -67,7 +64,7 @@ public class AddTask extends Fragment {
         Description= (EditText) view.findViewById(R.id.Task_Desc);
         save= (Button) view.findViewById(R.id.save);
         nameEmployee=(TextView)view.findViewById(R.id.nameEmployee);
-        Repeat= (CheckBox) view.findViewById(R.id.Repeat);
+        Repeat= (CheckBox) view.findViewById(R.id.repeat);
         EMAILTEMP = getArguments().getString("KEY");
         nameEmployee.setText(getArguments().getString("nameEmployee"));
         getDoctors();
@@ -97,23 +94,12 @@ public class AddTask extends Fragment {
             @Override
             public void onClick(View v) {
                 SaveData();
-
             }
         });
         Time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 helper.viewDialogeDate(Time);
-            }
-        });
-        Repeat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(Repeat.isChecked()) {
-                    weekly=true;
-                }else{
-                    weekly=false;
-                }
             }
         });
     }
@@ -157,11 +143,12 @@ public class AddTask extends Fragment {
 
         Task task = new Task();
         task.doctorName=doctor;
-        task.locationDoctor=address;
+        //task.locationDoctor=address;
         task.time_task=time;
         task.description=description;
         task.locationDoctor=addressLan_Lat;
         task.taskType= TaskType.INCOMPLETE;
+        task.repeat=Repeat.isChecked();
         task.insert(EMAILTEMP);
         if(!isexist())
             addDoctor();

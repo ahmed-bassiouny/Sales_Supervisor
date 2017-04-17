@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -60,6 +61,8 @@ public class Task {
     public String feedback="No Feedback";
     public int rateforEmployee;
     public int rateforDoctor;
+    public boolean repeat;
+    //***********************
     private int numberOfTasks;
     private int sum;
     private ValueEventListener postListener;
@@ -76,6 +79,9 @@ public class Task {
             getRoot(id_employee).child(id+"").child("time_task").setValue(time_task);
             getRoot(id_employee).child(id+"").child("rateforEmployee").setValue(rateforEmployee);
         }
+    }
+    public void updateRepeat(String id_employee,boolean repeat){
+            getRoot(id_employee).child(id+"").child("repeat").setValue(repeat);
     }
     public void deleteTask(String id_employee){
         getRoot(id_employee).child(id+"").removeValue();
@@ -97,6 +103,11 @@ public class Task {
                         }else if(taskTypeselected==task.taskType){
                             sum += task.rateforEmployee;
                             tasks.add(task);
+                        }
+                        if(task.repeat&&task.taskType==TaskType.COMPLETE){
+                            id=task.id;
+                            updateRepeat(id_employee,false);
+                            insertNewTaskForRepeat(id_employee,task);
                         }
                     }
                 }
@@ -128,10 +139,12 @@ public class Task {
                         final FragmentActivity fragmentActivity,
                         final ImageView canceltask, final ImageView editask,
                         final ImageView feedbackimg, final GoogleMap googleMap,
-                        final RatingBar ratingBar,final EditText Task_duration){
+                        final RatingBar ratingBar, final EditText Task_duration,
+                        final CheckBox repeat){
         if(helper==null);
             helper=new helper(fragmentActivity);
-         postListener = new ValueEventListener() {
+        utils.showProgess(fragmentActivity);
+        postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final Task task = dataSnapshot.child(task_id+"").getValue(Task.class);
@@ -142,6 +155,7 @@ public class Task {
                 taskType=task.taskType;
                 time_prepareTask=task.time_prepareTask;
                 locationPreparing=task.locationPreparing;
+                repeat.setChecked(task.repeat);
                 if(!task.locationDoctor.isEmpty())
                 Address.setText(helper.getFullAddress(task.locationDoctor));
                 Task_time.setText(task.time_task);
@@ -309,7 +323,17 @@ public class Task {
 
         return Output;
     }
-    public void removeListener(String id_employee){
-        getRoot(id_employee).removeEventListener(postListener);
+    public void removeListener(){
+        Information.getDatabase().removeEventListener(postListener);
+    }
+    private void insertNewTaskForRepeat(String id_employee,Task task){
+        Task newtask = new Task();
+        newtask.doctorName=task.doctorName;;
+        newtask.time_task=utils.dateAfter7Day(task.time_task);
+        newtask.description=task.description;
+        newtask.locationDoctor=task.locationDoctor;
+        newtask.taskType= TaskType.INCOMPLETE;
+        newtask.repeat=task.repeat;
+        getCountOfTasks(id_employee,newtask);
     }
 }

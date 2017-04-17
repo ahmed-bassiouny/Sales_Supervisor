@@ -97,7 +97,7 @@
                 android:drawablePadding="10dp"
                 android:inputType="textMultiLine"
                 android:padding="10dp"
-                android:id="@+id/Repeat" />
+                android:id="@+id/repeat" />
             <Button
                 android:id="@+id/save"
                 android:layout_width="119dp"

@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -51,14 +52,13 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
 
     EditText Doc_name,Address,Task_time,Task_Desc,Task_duration;
     CheckBox Repeat;
-    public static boolean weekly=false;
     SeekBar typetaskbar;
     TextView typetasktxt;
     RatingBar ratingBar;
     int ID;String EMAIL;
     ImageView editask,canceltask,feedback;
     Task task ;
-    pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper helper ;
+    helper helper ;
     int PLACE_PICKER_REQUEST = 1;
 
     //map part
@@ -88,7 +88,7 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
         typetasktxt.setTypeface(utils.getFont(getContext()));
 
         //******
-        Repeat= (CheckBox) view.findViewById(R.id.Repeat);
+        Repeat= (CheckBox) view.findViewById(R.id.repeat);
         //***********
        // scrollInfo=(ScrollView) view.findViewById(R.id.scrollInfo);
         //******
@@ -112,6 +112,7 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
         super.onActivityCreated(savedInstanceState);
         helper = new helper(getActivity());
         ID = getArguments().getInt("KEY");
+        task.id=ID;
         EMAIL=getArguments().getString("email");
 
         editask.setOnClickListener(new View.OnClickListener() {
@@ -147,19 +148,14 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
                 cancelTaskWithDialog();
             }
         });
-        Repeat.setOnClickListener(new View.OnClickListener() {
+        Repeat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-             if(Repeat.isChecked()) {
-                 weekly=true;
-             }else{
-                 weekly=false;
-             }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                task.updateRepeat(EMAIL,Repeat.isChecked());
             }
         });
     }
     private void SaveData(){
-        task.id=ID;
         task.doctorName=Doc_name.getText().toString();
         task.description=Task_Desc.getText().toString();
         task.time_task=Task_time.getText().toString();
@@ -210,14 +206,13 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
     @Override
     public void onResume() {
         super.onResume();
-        utils.showProgess(getContext());
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Task");
         MainContainerActivity.drawlayoutmain.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        task.getTask(EMAIL,ID,Doc_name,Address,Task_time,Task_Desc,typetaskbar,typetasktxt,getActivity(),canceltask,editask,feedback,googleMap,ratingBar,Task_duration);
+        task.getTask(EMAIL,ID,Doc_name,Address,Task_time,Task_Desc,typetaskbar,typetasktxt,getActivity(),canceltask,editask,feedback,googleMap,ratingBar,Task_duration,Repeat);
         mapView.onResume();
     }
 
@@ -250,6 +245,6 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
     @Override
     public void onStop() {
         super.onStop();
-        task.removeListener(EMAIL);
+        task.removeListener();
     }
 }

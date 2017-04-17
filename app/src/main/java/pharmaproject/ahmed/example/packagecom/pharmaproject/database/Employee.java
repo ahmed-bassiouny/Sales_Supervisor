@@ -55,7 +55,6 @@ public class Employee {
         getRoot().child("name").setValue(name);
         getRoot().child("rate").setValue(rate);
         getRoot().child("timeTrack").setValue(timeTrack);
-        getRoot().child("Repeat").setValue(ShowTask.weekly);
     }
 
     public void deleteEmployee() {
