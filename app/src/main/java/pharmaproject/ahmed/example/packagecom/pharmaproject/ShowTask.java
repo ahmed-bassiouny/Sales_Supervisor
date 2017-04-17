@@ -50,7 +50,7 @@ import pharmaproject.ahmed.example.packagecom.pharmaproject.helper.helper;
  */
 public class ShowTask extends Fragment implements OnMapReadyCallback {
 
-    EditText Doc_name,Address,Task_time,Task_Desc,Task_duration;
+    EditText Doc_name,Address,Task_time,Task_Desc,Task_duration,Reasonforcancel;
     CheckBox Repeat;
     SeekBar typetaskbar;
     TextView typetasktxt;
@@ -75,12 +75,14 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
         Task_time=(EditText)view.findViewById(R.id.Task_time);
         Task_Desc=(EditText)view.findViewById(R.id.Task_Desc);
         Task_duration= (EditText) view.findViewById(R.id.TaskDuration);
+        Reasonforcancel=(EditText)view.findViewById(R.id.reasonforcancel);
         //***********
         Doc_name.setTypeface(utils.getFont(getContext()));
         Address.setTypeface(utils.getFont(getContext()));
         Task_time.setTypeface(utils.getFont(getContext()));
         Task_Desc.setTypeface(utils.getFont(getContext()));
         Task_duration.setTypeface(utils.getFont(getContext()));
+        Reasonforcancel.setTypeface(utils.getFont(getContext()));
 
         typetaskbar=(SeekBar) view.findViewById(R.id.typetaskbar);
         //********
@@ -118,10 +120,12 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
         editask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(typetasktxt.getText().toString().equals("INCOMPLETE")||typetasktxt.getText().toString().equals("On The Way"))
-                    changeEnabled_SaveData();
-                else
+                if(typetasktxt.getText().toString().equals("COMPLETE"))
                     changeEnabled_SaveDataRate();
+                else if(typetasktxt.getText().toString().equals("CANCEL"))
+                    changeEnabled_SaveDatawithfeedbackCancel();
+                else
+                    changeEnabled_SaveData();
             }
         });
         Task_time.setOnClickListener(new View.OnClickListener() {
@@ -160,7 +164,7 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
         task.description=Task_Desc.getText().toString();
         task.time_task=Task_time.getText().toString();
         task.rateforEmployee=ratingBar.getProgress();
-        //return;
+        task.Reasonforcancel=Reasonforcancel.getText().toString();
         task.update(EMAIL,false);
     }
     public void getlocation(int PLACE_PICKER_REQUEST) {
@@ -186,7 +190,6 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
         Task_Desc.setEnabled(!Task_Desc.isEnabled());
         Task_time.setEnabled(!Task_time.isEnabled());
         Address.setEnabled(!Address.isEnabled());
-        //ratingBar.setIsIndicator(!ratingBar.isIndicator());
         if(Doc_name.isEnabled()) {
             editask.setImageResource(R.drawable.ok);
         }else {
@@ -203,6 +206,15 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
             SaveData();
         }
     }
+    private void changeEnabled_SaveDatawithfeedbackCancel(){
+        Reasonforcancel.setEnabled(!Reasonforcancel.isEnabled());
+        if(Reasonforcancel.isEnabled()) {
+            editask.setImageResource(R.drawable.ok);
+        }else {
+            editask.setImageResource(R.drawable.ph_edit);
+            SaveData();
+        }
+    }
     @Override
     public void onResume() {
         super.onResume();
@@ -212,7 +224,7 @@ public class ShowTask extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        task.getTask(EMAIL,ID,Doc_name,Address,Task_time,Task_Desc,typetaskbar,typetasktxt,getActivity(),canceltask,editask,feedback,googleMap,ratingBar,Task_duration,Repeat);
+        task.getTask(EMAIL,ID,Doc_name,Address,Task_time,Task_Desc,typetaskbar,typetasktxt,getActivity(),canceltask,feedback,googleMap,ratingBar,Task_duration,Repeat,Reasonforcancel);
         mapView.onResume();
     }
 

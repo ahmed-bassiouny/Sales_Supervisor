@@ -62,6 +62,7 @@ public class Task {
     public int rateforEmployee;
     public int rateforDoctor;
     public boolean repeat;
+    public String Reasonforcancel="";
     //***********************
     private int numberOfTasks;
     private int sum;
@@ -78,6 +79,7 @@ public class Task {
             getRoot(id_employee).child(id+"").child("description").setValue(description);
             getRoot(id_employee).child(id+"").child("time_task").setValue(time_task);
             getRoot(id_employee).child(id+"").child("rateforEmployee").setValue(rateforEmployee);
+            getRoot(id_employee).child(id+"").child("Reasonforcancel").setValue(Reasonforcancel);
         }
     }
     public void updateRepeat(String id_employee,boolean repeat){
@@ -137,10 +139,10 @@ public class Task {
                         final EditText Task_Desc,
                         final SeekBar typetaskbar, final TextView typetasktxt,
                         final FragmentActivity fragmentActivity,
-                        final ImageView canceltask, final ImageView editask,
+                        final ImageView canceltask,
                         final ImageView feedbackimg, final GoogleMap googleMap,
                         final RatingBar ratingBar, final EditText Task_duration,
-                        final CheckBox repeat){
+                        final CheckBox repeat,final EditText reasonforcancel){
         if(helper==null);
             helper=new helper(fragmentActivity);
         utils.showProgess(fragmentActivity);
@@ -155,6 +157,7 @@ public class Task {
                 taskType=task.taskType;
                 time_prepareTask=task.time_prepareTask;
                 locationPreparing=task.locationPreparing;
+                reasonforcancel.setText(task.Reasonforcancel);
                 repeat.setChecked(task.repeat);
                 if(!task.locationDoctor.isEmpty())
                 Address.setText(helper.getFullAddress(task.locationDoctor));
@@ -165,32 +168,27 @@ public class Task {
                         typetaskbar.setProgress(0);
                         typetasktxt.setText("INCOMPLETE");
                         canceltask.setVisibility(View.VISIBLE);
-                        editask.setVisibility(View.VISIBLE);
                         break;
                     case On_The_Way:
                         typetaskbar.setProgress(1);
                         typetasktxt.setText("On The Way");
                         canceltask.setVisibility(View.VISIBLE);
-                        editask.setVisibility(View.VISIBLE);
                         break;
                     case PROCESSING:
                         typetaskbar.setProgress(2);
                         typetasktxt.setText("PROCESSING");
                         canceltask.setVisibility(View.INVISIBLE);
-                        editask.setVisibility(View.INVISIBLE);
                         break;
                     case COMPLETE:
                         typetaskbar.setProgress(3);
                         typetasktxt.setText("COMPLETE");
                         canceltask.setVisibility(View.INVISIBLE);
-                        editask.setVisibility(View.VISIBLE);
                         Task_duration.setText(getTiming(task.time_task,task.time_endTask));
                         break;
                     case CANCEL:
                         typetaskbar.setProgress(0);
                         typetasktxt.setText("CANCEL");
                         canceltask.setVisibility(View.INVISIBLE);
-                        editask.setVisibility(View.INVISIBLE);
                         break;
                 }
 
